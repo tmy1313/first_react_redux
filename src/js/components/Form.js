@@ -2,13 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import uuidv1 from "uuid";
-import { addArticle } from "../actions/index";
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addArticle: article => dispatch(addArticle(article))
-  };
-};
+import { bindActionCreators } from "redux";
+import addArticle from '../actions/AddArticle';
 
 class ConnectedForm extends Component {
   constructor() {
@@ -18,19 +13,26 @@ class ConnectedForm extends Component {
       title: ""
     };
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ [event.target.id]: event.target.value });
+    this.setState({title: event.target.value});
   }
 
   handleSubmit(event) {
+    console.log("Submitting form.");
     event.preventDefault();
-    const { title } = this.state;
+    
     const id = uuidv1();
-    this.props.addArticle({ title, id });
+    let article = {};
+    article.title = this.state.title;
+    article.id = id;
+    console.log(article);
+    console.log(this.props);
+    this.props.addArticle(article);
+    
     this.setState({ title: "" });
   }
 
@@ -39,16 +41,17 @@ class ConnectedForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="title">Title</label>
+          
           <input
             type="text"
             className="form-control"
             id="title"
             value={title}
             onChange={this.handleChange}
+            placeholder="Title"
           />
         </div>
-        <button type="submit" className="btn btn-success btn-lg">
+        <button type="submit" className="btn btn-success ">
           SAVE
         </button>
       </form>
@@ -56,10 +59,14 @@ class ConnectedForm extends Component {
   }
 }
 
-const Form = connect(null, mapDispatchToProps)(ConnectedForm);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    addArticle: addArticle
+  }, dispatch);
+}
 
 ConnectedForm.propTypes = {
   addArticle: PropTypes.func.isRequired
 };
 
-export default Form;
+export default connect(null, mapDispatchToProps)(ConnectedForm);;
