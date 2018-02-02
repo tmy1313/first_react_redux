@@ -18,6 +18,11 @@ class ArticleItem extends Component {
     this.handleEditMode = this.handleEditMode.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.focusTextInput = this.focusTextInput.bind(this);
+  }
+
+  focusTextInput() {
+    this.textInput.focus();
   }
 
   handleChange(event) {
@@ -38,6 +43,13 @@ class ArticleItem extends Component {
     this.setState({
       title: this.props.article.title,
       editMode: true});
+    
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.editMode) {
+      this.focusTextInput();
+    }
   }
 
   handleDelete(event) {
@@ -54,7 +66,8 @@ class ArticleItem extends Component {
               className="form-control"
               value={this.state.title}
               onChange={this.handleChange}
-              placeholder="Title" />
+              placeholder="Title" 
+              ref={(input) => { this.textInput = input }} />
           <div className="input-group-append">
             <button className="btn btn-outline-secondary" type="button" onClick={this.handleUpdate}>Update</button>
           </div>
