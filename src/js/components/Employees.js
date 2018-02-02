@@ -17,19 +17,22 @@ class Employees extends Component {
   componentWillMount() {
     const _this = this;
     console.log("employees.componentwillmount()");
-    fetch("http://www.filltext.com/?rows=100&fname={firstName}&lname={lastName}&tel={phone|format}&address={streetAddress}&city={city}&state={usState|abbr}&zip={zip}&pretty=true")
+    fetch("http://www.filltext.com/?rows=100&id={index}&fname={firstName}&lname={lastName}&tel={phone|format}&address={streetAddress}&city={city}&state={usState|abbr}&zip={zip}")
     .then(function(response) {return response.json();})
     .then(function(json) {
-        console.log(json);
         _this.setState({employees: json})
     });
   }
 
+//   function displayEditIcon(cell, row) {
+//      return "<a href='#' ><span className='fas fa-pencil-alt'></span></a>"; 
+//   }
 
   render() {
     return (
         <BootstrapTable data={this.state.employees} striped hover pagination version="4">
-            <TableHeaderColumn isKey dataField='fname'>First Name</TableHeaderColumn>
+            <TableHeaderColumn dataField='id' isKey={true} >ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='fname'>First Name</TableHeaderColumn>
             <TableHeaderColumn dataField='lname'> Last Name</TableHeaderColumn>
             <TableHeaderColumn dataField='address'>Address</TableHeaderColumn>
         </BootstrapTable>
