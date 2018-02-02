@@ -37,8 +37,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = state => {
-  console.log("ArticleList mapStateToProps: " + JSON.stringify(state.articles.articles));
-  console.log("ArticleList mapStateToProps type of state.articles: " + typeof state.articles.articles);
   return {
     articles: state.articles.articles
   }
