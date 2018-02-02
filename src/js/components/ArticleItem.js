@@ -23,6 +23,7 @@ class ArticleItem extends Component {
 
   focusTextInput() {
     this.textInput.focus();
+    this.textInput.setSelectionRange(1000, 1000);
   }
 
   handleChange(event) {
@@ -79,11 +80,11 @@ class ArticleItem extends Component {
   renderComponentReadOnly() {
     return (
       <li className="list-group-item" key={this.props.article.id}>
-            {this.props.article.title} 
+            <a href="#" onClick={this.handleEditMode} ><span className="fas fa-pencil-alt"></span></a>
             &nbsp;
             <a href="#" onClick={this.handleDelete} ><span className="fas fa-times"></span></a>
             &nbsp;
-            <a href="#" onClick={this.handleEditMode} ><span className="fas fa-pencil-alt"></span></a>
+            {this.props.article.title} 
         </li>
     )
   }
