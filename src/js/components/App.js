@@ -2,6 +2,7 @@ import React from "react";
 import ArticleList from "./ArticleList";
 import Form from "./Form";
 import Employees from "./Employees";
+import Employees1 from "./Employees1";
 
 const App = () => (
   <div>
@@ -15,9 +16,10 @@ const App = () => (
         <Form />
       </div>
     </div>
+    
     <div className="row mt-5">
       <div className="col-md-8 offset-md-1">
-        <Employees />
+        <Employees1 />
       </div>
     </div>
   </div>

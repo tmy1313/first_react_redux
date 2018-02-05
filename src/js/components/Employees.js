@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { BootstrapTable, TableHeaderColumn} from "react-bootstrap-table";
-//import 'node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+
 
 class Employees extends Component {
   constructor() {
