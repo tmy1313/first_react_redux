@@ -38,12 +38,12 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = state => {
   return {
-    articles: state.articles.articles
+    articles: state.articles
   }
 }
 
 ArticleList.propTypes = {
-  articles: PropTypes.array.isRequired
+  articles: PropTypes.array
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticleList);

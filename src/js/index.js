@@ -14,6 +14,8 @@ const middleware = process.env.NODE_ENV !== 'production' ?
     combinedReducers,
     applyMiddleware(...middleware)
   );
+  console.log("After CreateStore()");
+  console.log(store.getState())
 
 render(
   <Provider store={store}>

@@ -1,6 +1,6 @@
 import { ADD_ARTICLE, DELETE_ARTICLE, UPDATE_ARTICLE } from '../actions/Types';
 
-const initialState = { articles: [] };
+const initialState = [];
 
 
 export default function(state = initialState, action) {
