@@ -13,6 +13,7 @@ import Table, {
     TableSortLabel,
   } from 'material-ui/Table';
   import retreiveEmployees from '../actions/RetreiveEmployees';
+import deleteEmployee from "../actions/DeleteEmployee";
 
 
 class Employees1 extends Component {
@@ -90,7 +91,8 @@ class Employees1 extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    retreiveEmployees: retreiveEmployees
+    retreiveEmployees: retreiveEmployees,
+    deleteEmployee: deleteEmployee
   }, dispatch);
 }
 
@@ -103,8 +105,9 @@ const mapStateToProps = state => {
 }
 
 Employees1.propTypes = {
-    employees: PropTypes.array,
-    retreiveEmployees: PropTypes.func.isRequired
+    employees: PropTypes.array.isRequired,
+    retreiveEmployees: PropTypes.func.isRequired,
+    deleteEmployee: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Employees1);
