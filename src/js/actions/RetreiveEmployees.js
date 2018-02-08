@@ -15,6 +15,7 @@ function receiveEmployees(employees) {
 
 
 export default function retreiveEmployees() {
+    console.log
     return function (dispatch) {
         dispatch(requestEmployees());
 

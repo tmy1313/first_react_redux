@@ -4,21 +4,16 @@ const initialState = [];
 
 
 export default function(state = initialState, action) {
+
   switch (action.type) {
-    case ADD_ARTICLE:
-      return Object.assign({}, state, {
-        articles: state.articles.concat(action.payload)
-      })
-
-    case DELETE_ARTICLE:
-      return Object.assign({}, state, {
-        articles: state.articles.filter( article => article.id != action.payload.id)
-      })
-
-    case UPDATE_ARTICLE:
-      return Object.assign({}, state, {
-        articles: state.articles.map( article => article.id === action.payload.id ? {...article, title: action.payload.title} : article)
-      });
+      case ADD_ARTICLE:
+        return [...state, action.payload];
+    
+      case DELETE_ARTICLE:
+        return state.filter( article => article.id != action.payload.id);
+        
+      case UPDATE_ARTICLE:
+        return state.map( article => article.id === action.payload.id ? {...article, title: action.payload.title} : article);
 
     default:
       return state;
